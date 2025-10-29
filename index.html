@@ -220,6 +220,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
+                </ul>
             </div>
         </div>
     </nav>
@@ -284,7 +285,6 @@
                     <h5>DHIScan Academy</h5>
                     <p>أكاديمية متخصصة في تقديم برامج تعليمية متميزة لتطوير المهارات الأكاديمية والمهنية.</p>
                 </div>
-   
             </div>
             <hr class="bg-light">
             <div class="text-center">
@@ -295,7 +295,6 @@
 
     <!-- Firebase SDK -->
     <script type="module">
-        // Firebase code remains the same as previous version
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
         import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
 
@@ -321,7 +320,18 @@
             const address = document.getElementById('address').value;
             const phone = document.getElementById('phone').value;
             const educationLevel = document.getElementById('educationLevel').value;
-            const studyType = document.getElementById('studyType').value;
+            
+            // التحقق من صحة البيانات قبل الإرسال
+            if (!fullName || !governorate || !address || !phone || !educationLevel) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'بيانات ناقصة',
+                    text: 'يرجى ملء جميع الحقول المطلوبة',
+                    confirmButtonText: 'حسناً',
+                    confirmButtonColor: '#e63946'
+                });
+                return;
+            }
             
             const newStudentRef = push(ref(database, 'students'));
             
@@ -331,7 +341,6 @@
                 address: address,
                 phone: phone,
                 educationLevel: educationLevel,
-                studyType: studyType,
                 timestamp: new Date().toISOString()
             }).then(() => {
                 // Show success message with SweetAlert
@@ -360,5 +369,4 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 </body>
-
 </html>
