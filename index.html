@@ -245,14 +245,14 @@
                         </div>
                         
                         <div class="floating-label">
-                            <input type="text" class="form-control" id="governorate" placeholder=" " required>
-                            <label for="governorate">الجامعة</label>
+                            <input type="text" class="form-control" id="university" placeholder=" " required>
+                            <label for="university">الجامعة</label>
                         </div>
                         
                         <div class="mb-4">
-                            <label for="educationLevel" class="form-label">الجنس</label>
-                            <select class="form-select" id="educationLevel" required>
-                                <option value="" selected disabled>اختر الجنس </option>
+                            <label for="gender" class="form-label">الجنس</label>
+                            <select class="form-select" id="gender" required>
+                                <option value="" selected disabled>اختر الجنس</option>
                                 <option value="ذكر">ذكر</option>
                                 <option value="أنثى">أنثى</option>
                             </select>
@@ -264,9 +264,9 @@
                         </div>
                         
                         <div class="mb-4">
-                            <label for="educationLevel" class="form-label">الاجهزة التي تريد التدرب عليها</label>
-                            <select class="form-select" id="educationLevel" required>
-                                <option value="" selected disabled>اختر الاجهزة </option>
+                            <label for="devices" class="form-label">الاجهزة التي تريد التدرب عليها</label>
+                            <select class="form-select" id="devices" required>
+                                <option value="" selected disabled>اختر الاجهزة</option>
                                 <option value="MRI + CT">MRI + CT</option>
                                 <option value="MRI + CT + XRAY">MRI + CT + XRAY</option>
                                 <option value="XRAY فقط">XRAY فقط</option>
@@ -320,13 +320,13 @@
             e.preventDefault();
             
             const fullName = document.getElementById('fullName').value;
-            const governorate = document.getElementById('governorate').value;
-            const address = document.getElementById('address').value;
+            const university = document.getElementById('university').value;
+            const gender = document.getElementById('gender').value;
             const phone = document.getElementById('phone').value;
-            const educationLevel = document.getElementById('educationLevel').value;
+            const devices = document.getElementById('devices').value;
             
             // التحقق من صحة البيانات قبل الإرسال
-            if (!fullName || !governorate || !address || !phone || !educationLevel) {
+            if (!fullName || !university || !gender || !phone || !devices) {
                 Swal.fire({
                     icon: 'error',
                     title: 'بيانات ناقصة',
@@ -341,10 +341,10 @@
             
             set(newStudentRef, {
                 fullName: fullName,
-                governorate: governorate,
-                address: address,
+                university: university,
+                gender: gender,
                 phone: phone,
-                educationLevel: educationLevel,
+                devices: devices,
                 timestamp: new Date().toISOString()
             }).then(() => {
                 // Show success message with SweetAlert
@@ -374,4 +374,3 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 </body>
 </html>
-
